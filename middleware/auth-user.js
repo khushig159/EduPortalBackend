@@ -6,6 +6,9 @@ const authSeeker = async (req, res, next) => {
     console.log("Cookies received:", req.cookies);
     console.log("Authorization header:", req.headers.authorization);
     const refreshToken = req.cookies?.userrefreshToken || req.body.userrefreshToken;
+    if (!refreshToken) {
+  return res.status(401).json({ message: "Unauthorized" });
+}
     console.log(refreshToken)
     if (!refreshToken) {
         return res.status(401).json({ message: "Unauthorized" });
