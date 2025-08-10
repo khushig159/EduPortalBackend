@@ -166,8 +166,8 @@ exports.loginRecruiter = async (req, res, next) => {
 
         return res
             .status(200)
-            .cookie('accessToken', accesstoken, options)
-            .cookie('refreshToken', refreshtoken, refreshoptions)
+            .cookie('recaccessToken', accesstoken, options)
+            .cookie('recrefreshToken', refreshtoken, refreshoptions)
             .json({
                 message: 'User logged in successfully',
                 user: loggedInUser,
