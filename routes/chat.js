@@ -7,7 +7,14 @@ const path = require("path");
 // const { uploadProfile, uploadCompanyLogo, uploadUserResume, uploadChatbotResume } = require('../middleware/multer');
 const extractTextFromResume = require('../utils/resumeParser')
 
-const Storage = multer.memoryStorage()
+const Storage = multer.diskStorage({
+    destination: (res, file, cb) => {
+        cb(null, 'uploads/pdforpic')
+    },
+    filename: (req, file, cb) => {
+        cb(null, uuidv4() + '-' + file.originalname)
+    }
+})
 
 const Filter = (req, file, cb) => {
     const ext = path.extname(file.originalname).toLowerCase();
